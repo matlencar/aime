@@ -55,7 +55,7 @@ public class ClienteController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/api/cliente/{id}")
     public ResponseEntity<Cliente> update(@PathVariable Integer id, @RequestBody @Valid Cliente cliente) {
         log.info("atualizando conta com id " + id);
         getCliente(id);

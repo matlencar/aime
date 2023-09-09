@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/categorias")
+// @RequestMapping("/api/categorias")
 public class CategoriaController {
     
     Logger log = LoggerFactory.getLogger(getClass());
@@ -30,32 +30,33 @@ public class CategoriaController {
     @Autowired
     CategoriaRepository repository; 
 
-    @GetMapping
+    @GetMapping("/api/categorias")
     public List<Categoria> index() {
         return repository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/api/categorias")
     public ResponseEntity<Categoria> create(@RequestBody @Valid Categoria categoria) {
         log.info("cadastrando categoria: " + categoria);
         repository.save(categoria);
         return ResponseEntity.status(HttpStatus.CREATED).body(categoria);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/api/categorias/{id}")
     public ResponseEntity<Categoria> show(@PathVariable Integer id) {
         log.info("buscando categoria com id " + id);
         return ResponseEntity.ok(getCategoria(id));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/api/categorias/{id}")
     public ResponseEntity<Categoria> destroy(@PathVariable Integer id) {
         log.info("apagando categoria com id " + id);
-        repository.delete(getCategoria(id));
+        var categoria = getCategoria(id);
+        repository.delete(categoria);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/api/categorias/{id}")
     public ResponseEntity<Categoria> update(@PathVariable Integer id, @RequestBody @Valid Categoria categoria) {
         log.info("atualizando categoria com id " + id);
         getCategoria(id);
