@@ -22,7 +22,7 @@ import br.com.fiap.aime.repository.TelefoneTransportadoraRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/telefoneTransportadora")
+// @RequestMapping("/api/telefoneTransportadora")
 public class TelefoneTransportadoraController {
     
     Logger log = LoggerFactory.getLogger(getClass());
@@ -30,32 +30,33 @@ public class TelefoneTransportadoraController {
     @Autowired
     TelefoneTransportadoraRepository repository; 
 
-    @GetMapping
+    @GetMapping("/api/telefoneTransportadora")
     public List<TelefoneTransportadora> index() {
         return repository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/api/telefoneTransportadora")
     public ResponseEntity<TelefoneTransportadora> create(@RequestBody @Valid TelefoneTransportadora TelefoneTransportadora) {
         log.info("cadastrando novo telefone da transportadora: " + TelefoneTransportadora);
         repository.save(TelefoneTransportadora);
         return ResponseEntity.status(HttpStatus.CREATED).body(TelefoneTransportadora);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/api/telefoneTransportadora/{id}")
     public ResponseEntity<TelefoneTransportadora> show(@PathVariable Integer id) {
         log.info("buscando o telefone da transportadora com o id " + id);
         return ResponseEntity.ok(getTelefoneTransportadora(id));
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<Cliente> destroy(@PathVariable Integer id) {
+    @DeleteMapping("/api/telefoneTransportadora/{id}")
+    public ResponseEntity<TelefoneTransportadora> destroy(@PathVariable Integer id) {
         log.info("apagando o telefone da transportadora com id " + id);
-        repository.delete(getTelefoneTransportadora(id));
+        var telefone = getTelefoneTransportadora(id);
+        repository.delete(telefone);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/api/telefoneTransportadora/{id}")
     public ResponseEntity<TelefoneTransportadora> update(@PathVariable Integer id, @RequestBody @Valid TelefoneTransportadora TelefoneTransportadora) {
         log.info("atualizando o telefone da transportadora com id " + id);
         getTelefoneTransportadora(id);

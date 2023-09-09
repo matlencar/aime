@@ -23,7 +23,7 @@ import br.com.fiap.aime.repository.TelefoneClienteRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/telefoneCliente")
+// @RequestMapping("/api/telefoneCliente")
 public class TelefoneClienteController {
     
     Logger log = LoggerFactory.getLogger(getClass());
@@ -31,32 +31,33 @@ public class TelefoneClienteController {
     @Autowired
     TelefoneClienteRepository repository; 
 
-    @GetMapping
+    @GetMapping("/api/telefoneCliente")
     public List<TelefoneCliente> index() {
         return repository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/api/telefoneCliente")
     public ResponseEntity<TelefoneCliente> create(@RequestBody @Valid TelefoneCliente telefoneCliente) {
         log.info("cadastrando novo telefone de cliente: " + telefoneCliente);
         repository.save(telefoneCliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(telefoneCliente);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/api/telefoneCliente/{id}")
     public ResponseEntity<TelefoneCliente> show(@PathVariable Integer id) {
         log.info("buscando o telefone do cliente com o id " + id);
         return ResponseEntity.ok(getTelefoneCliente(id));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/api/telefoneCliente/{id}")
     public ResponseEntity<Cliente> destroy(@PathVariable Integer id) {
         log.info("apagando conta com id " + id);
-        repository.delete(getTelefoneCliente(id));
+        var telefone = getTelefoneCliente(id);
+        repository.delete(telefone);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/api/telefoneCliente/{id}")
     public ResponseEntity<TelefoneCliente> update(@PathVariable Integer id, @RequestBody @Valid TelefoneCliente telefoneCliente) {
         log.info("atualizando o telefone do cliente com id " + id);
         getTelefoneCliente(id);
