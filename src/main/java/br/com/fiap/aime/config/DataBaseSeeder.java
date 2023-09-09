@@ -79,9 +79,9 @@ public class DataBaseSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception{
 
-        Cliente cliente1 = new Cliente(1, "Caio", "caio2132@gmail.com", "4446668881", "445556667", "@ola123", "20/09/1998",Status.I , "N/A");
-        Cliente cliente2 = new Cliente(2, "Sheila", "sheila1132@gmail.com", "4446668881", "445556667", "@ola123", "20/09/1998",Status.A , "N/A");
-        Cliente cliente3 = new Cliente(3, "Rubinho", "rubinho1132@gmail.com", "4446668881", "445556667", "@ola123", "20/09/1998",Status.A , "Aninha");
+        Cliente cliente1 = new Cliente(1, "Caio", "caio2132@gmail.com", "4446668881", "445556667", "ola123@", "20/09/1998",Status.I , "N/A");
+        Cliente cliente2 = new Cliente(2, "Sheila", "sheila1132@gmail.com", "4446668881", "445556667", "ola123@", "20/09/1998",Status.A , "N/A");
+        Cliente cliente3 = new Cliente(3, "Rubinho", "rubinho1132@gmail.com", "4446668881", "445556667", "ola123@", "20/09/1998",Status.A , "Aninha");
         clienteRepository.saveAll(List.of(cliente1, cliente2, cliente3));
         
         EnderecoCliente enderecoCliente1 = new EnderecoCliente(1, "056471", "pa nozes", "osascu", "brasil", "2", Status.A, "em frente a tristeza", cliente1);

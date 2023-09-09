@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.aime.exception.RestNotFoundException;
 import br.com.fiap.aime.model.Cliente;
+import br.com.fiap.aime.model.Credencial;
 import br.com.fiap.aime.repository.ClienteRepository;
+import br.com.fiap.aime.service.TokenService;
 import jakarta.validation.Valid;
 
 @RestController
@@ -28,6 +32,27 @@ public class ClienteController {
 
     @Autowired
     ClienteRepository repository; 
+
+    //implementaçõs de Security
+
+    @Autowired
+    AuthenticationManager manager;
+
+    @Autowired
+    PasswordEncoder encoder;
+
+    @Autowired
+    TokenService tokenService;
+
+    @PostMapping("/api/clientes/login")
+    public ResponseEntity<Object> login(@RequestBody @Valid Credencial credencial){
+        manager.authenticate(credencial.toAuthentication());
+
+        var token = tokenService.generateToken(credencial);
+        return ResponseEntity.ok(token);
+    }
+
+    //end
 
     @GetMapping("/api/clientes")
     public List<Cliente> index() {

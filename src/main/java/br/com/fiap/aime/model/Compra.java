@@ -1,9 +1,5 @@
 package br.com.fiap.aime.model;
 
-import java.sql.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
