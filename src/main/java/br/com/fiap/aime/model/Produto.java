@@ -43,7 +43,7 @@ public class Produto {
     private String descricao;
 
     @NotNull
-    @Size(max = 5)
+    // @Size(max = 5)
     private int estrelas;
 
     @NotNull
