@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.aime.exception.RestNotFoundException;
-import br.com.fiap.aime.model.Categoria;
 import br.com.fiap.aime.model.Compra;
 import br.com.fiap.aime.repository.CompraRepository;
 import jakarta.validation.Valid;
