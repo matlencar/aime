@@ -22,7 +22,7 @@ import br.com.fiap.aime.repository.ClienteRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/cliente")
+// @RequestMapping("/api/clientes")
 public class ClienteController {
 
     Logger log = LoggerFactory.getLogger(getClass());
@@ -30,32 +30,33 @@ public class ClienteController {
     @Autowired
     ClienteRepository repository; 
 
-    @GetMapping
+    @GetMapping("/api/clientes")
     public List<Cliente> index() {
         return repository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/api/clientes")
     public ResponseEntity<Cliente> create(@RequestBody @Valid Cliente cliente) {
         log.info("cadastrando novo cliente: " + cliente);
         repository.save(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/api/clientes/{id}")
     public ResponseEntity<Cliente> show(@PathVariable Integer id) {
         log.info("buscando cliente com o id " + id);
         return ResponseEntity.ok(getCliente(id));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/api/clientes/{id}")
     public ResponseEntity<Cliente> destroy(@PathVariable Integer id) {
         log.info("apagando conta com id " + id);
-        repository.delete(getCliente(id));
+        var cliente = getCliente(id);
+        repository.delete(cliente);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/api/cliente/{id}")
+    @PutMapping("/api/clientes/{id}")
     public ResponseEntity<Cliente> update(@PathVariable Integer id, @RequestBody @Valid Cliente cliente) {
         log.info("atualizando conta com id " + id);
         getCliente(id);

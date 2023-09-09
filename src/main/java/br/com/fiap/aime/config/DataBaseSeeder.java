@@ -84,9 +84,9 @@ public class DataBaseSeeder implements CommandLineRunner {
         Cliente cliente3 = new Cliente(3, "Rubinho", "rubinho1132@gmail.com", "4446668881", "445556667", "@ola123", "20/09/1998",Status.A , "Aninha");
         clienteRepository.saveAll(List.of(cliente1, cliente2, cliente3));
         
-        EnderecoCliente enderecoCliente1 = new EnderecoCliente(1, "056471", "pa nozes", "osascu", "brasil", "2", Status.A, "em frente a tristeza", cliente2);
+        EnderecoCliente enderecoCliente1 = new EnderecoCliente(1, "056471", "pa nozes", "osascu", "brasil", "2", Status.A, "em frente a tristeza", cliente1);
         EnderecoCliente enderecoCliente2 = new EnderecoCliente(2, "056471", "pa nozes", "osascu", "brasil", "2", Status.A, "em frente a tristeza", cliente2);
-        EnderecoCliente enderecoCliente3 = new EnderecoCliente(3, "056471", "pa nozes", "osascu", "brasil", "2", Status.A, "em frente a tristeza", cliente2);
+        EnderecoCliente enderecoCliente3 = new EnderecoCliente(3, "056471", "pa nozes", "osascu", "brasil", "2", Status.A, "em frente a tristeza", cliente3);
         enderecoClienteRepository.saveAll(List.of(enderecoCliente1, enderecoCliente2, enderecoCliente3));
 
         TelefoneCliente telefoneCliente1 = new TelefoneCliente(1, "7893405723", "011", "+55", Status.A, cliente1);
@@ -94,14 +94,19 @@ public class DataBaseSeeder implements CommandLineRunner {
         TelefoneCliente telefoneCliente3 = new TelefoneCliente(3, "7893405723", "011", "+55", Status.A, cliente3);
         telefoneClienteRepository.saveAll(List.of(telefoneCliente1, telefoneCliente2, telefoneCliente3));
 
-        Categoria categoria1 = new Categoria(1, "categoria1", "teste", null);
+        Produto produto1 = new Produto(1, "Notebook", "I5 10º geração", 4, 6, 20, 10);
+        Produto produto2 = new Produto(2, "smartphone", "128gb", 5, 2, 1150, 10);
+        Produto produto3 = new Produto(3, "SSD", "518gb de capacidade", 3, 11, 70, 10);
+        produtoRepository.saveAll(List.of(produto1, produto2, produto3));
+
+        Categoria categoria1 = new Categoria(1, "categoria1", "teste",  null);
         Categoria categoria2 = new Categoria(2, "categoria2", "teste2", null);
         Categoria categoria3 = new Categoria(3, "categoria3", "teste3", null);
         categoriaRepository.saveAll(List.of(categoria1, categoria2, categoria3));
 
-        Compra compra1 = new Compra(1, "aaaA", 15, 12937, cliente2, null);
-        Compra compra2 = new Compra(2, "aaaA", 15, 12937, cliente2, null);
-        Compra compra3 = new Compra(3, "aaaA", 15, 12937, cliente2, null);
+        Compra compra1 = new Compra(1, "20/10/2023", 15, 12937, cliente1, null);
+        Compra compra2 = new Compra(2, "21/08/2023", 11, 14331, cliente2, null);
+        Compra compra3 = new Compra(3, "29/07/2023", 14, 19435, cliente3, null);
         compraRepository.saveAll(List.of(compra1, compra2, compra3));
 
         Empresa empresa1 = new Empresa(1, "Lksad", "Ltda", "any",4, 5, null, null, null);
@@ -135,10 +140,10 @@ public class DataBaseSeeder implements CommandLineRunner {
         EnderecoTransportadora enderecoTransportadora3 = new EnderecoTransportadora(3, "728374", "alou", "aslou", "brasil", "123", Status.A, "fjhse", transportadora3);
         enderecoTransportadoraRepository.saveAll(List.of(enderecoTransportadora1, enderecoTransportadora2, enderecoTransportadora3));
 
-        Produto produto1 = new Produto(1, "entrega rápida", "butão", 4, 6, 20, 10);
-        Produto produto2 = new Produto(2, "entrega rápida", "smartphone", 5, 2, 1150, 10);
-        Produto produto3 = new Produto(3, "entrega rápida", "tenis", 3, 11, 70, 10);
-        produtoRepository.saveAll(List.of(produto1, produto2, produto3));
+        // Produto produto1 = new Produto(1, "Notebook", "I5 10º geração", 4, 6, 20, 10);
+        // Produto produto2 = new Produto(2, "smartphone", "128gb", 5, 2, 1150, 10);
+        // Produto produto3 = new Produto(3, "SSD", "518gb de capacidade", 3, 11, 70, 10);
+        // produtoRepository.saveAll(List.of(produto1, produto2, produto3));
         
         Marca marca1 = new Marca(1, "Nike", "Melhor nike do mundo", 5);
         Marca marca2 = new Marca(2, "Aididas", "Melhor nike do mundo", 4);
