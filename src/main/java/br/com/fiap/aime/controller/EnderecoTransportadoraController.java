@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.aime.exception.RestNotFoundException;
@@ -22,7 +21,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/EnderecoTransportadoras")
+// @RequestMapping("/api/enderecoTransportadoras")
 public class EnderecoTransportadoraController {
         
     Logger log = LoggerFactory.getLogger(getClass());
@@ -30,27 +29,33 @@ public class EnderecoTransportadoraController {
     @Autowired
     EnderecoTransportadoraRepository repository; // IoD
 
-    @PostMapping
+    @GetMapping("/api/enderecoTransportadoras")
+    public List<EnderecoTransportadora> index() {
+        return repository.findAll();
+    }
+
+    @PostMapping("/api/enderecoTransportadoras")
     public ResponseEntity<EnderecoTransportadora> create(@RequestBody @Valid EnderecoTransportadora enderecoTransportadora) {
         log.info("cadastrando EnderecoTransportadora: " + enderecoTransportadora);
         repository.save(enderecoTransportadora);
         return ResponseEntity.status(HttpStatus.CREATED).body(enderecoTransportadora);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/api/enderecoTransportadoras/{id}")
     public ResponseEntity<EnderecoTransportadora> show(@PathVariable Integer id) {
         log.info("buscando EnderecoTransportadora com id " + id);
         return ResponseEntity.ok(getEnderecoTransportadora(id));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/api/enderecoTransportadoras/{id}")
     public ResponseEntity<EnderecoTransportadora> destroy(@PathVariable Integer id) {
         log.info("apagando EnderecoTransportadora com id " + id);
-        repository.delete(getEnderecoTransportadora(id));
+        var endereco = getEnderecoTransportadora(id);
+        repository.delete(endereco);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/api/enderecoTransportadoras/{id}")
     public ResponseEntity<EnderecoTransportadora> update(@PathVariable Integer id, @RequestBody @Valid EnderecoTransportadora enderecoTransportadora) {
         log.info("atualizando EnderecoTransportadora com id " + id);
         getEnderecoTransportadora(id);

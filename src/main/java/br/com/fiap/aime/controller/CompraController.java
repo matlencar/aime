@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.aime.exception.RestNotFoundException;
@@ -22,7 +21,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/compras")
+// @RequestMapping("/api/compras")
 public class CompraController {
         
     Logger log = LoggerFactory.getLogger(getClass());
@@ -30,31 +29,39 @@ public class CompraController {
     @Autowired
     CompraRepository repository; // IoD
 
-    @GetMapping
+    @GetMapping("/api/compras")
     public List<Compra> index() {
         return repository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/api/compras")
     public ResponseEntity<Compra> create(@RequestBody @Valid Compra compra) {
         log.info("cadastrando Compra: " + compra);
         repository.save(compra);
         return ResponseEntity.status(HttpStatus.CREATED).body(compra);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/api/compras/{id}")
     public ResponseEntity<Compra> show(@PathVariable Integer id) {
         log.info("buscando Compra com id " + id);
         return ResponseEntity.ok(getCompra(id));
     }
     
-    @PutMapping("{id}")
+    @PutMapping("/api/compras/{id}")
     public ResponseEntity<Compra> update(@PathVariable Integer id, @RequestBody @Valid Compra compra) {
         log.info("atualizando Compra com id " + id);
         getCompra(id);
         compra.setId(id);
         repository.save(compra);
         return ResponseEntity.ok(compra);
+    }
+
+    @DeleteMapping("/api/compras/{id}")
+      public ResponseEntity<Compra> destroy(@PathVariable Integer id) {
+        log.info("apagando categoria com id " + id);
+        var compra = getCompra(id);
+        repository.delete(compra);
+        return ResponseEntity.noContent().build();
     }
 
     private Compra getCompra(Integer id) {

@@ -1,10 +1,12 @@
 package br.com.fiap.aime.model;
 
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,7 +14,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -31,7 +32,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-public class Cliente {
+public class Cliente implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
@@ -67,14 +68,51 @@ public class Cliente {
     @Size(min = 3, message = "Precisa conter um nome de no minimo 3 caracteres")
 	private String nomeSocial;
 
-    //RELACIONAMENTOS
+    //Implementando user details
 
-    @OneToMany //(mappedBy = "cliente", cascade = CascadeType.MERGE)
-	private List<TelefoneCliente> telefoneCliente = new ArrayList<TelefoneCliente>();
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_CLIENTE"));
+    }
 
-	@OneToMany //(mappedBy = "cliente", cascade = CascadeType.MERGE)
-	private List<EnderecoCliente> enderecoCliente = new ArrayList<EnderecoCliente>();
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
 
-	@OneToMany //(mappedBy = "cliente", cascade = CascadeType.MERGE)
-	private List<Compra> compras = new ArrayList<Compra>();
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    // //RELACIONAMENTOS
+
+    // @OneToMany //(mappedBy = "cliente", cascade = CascadeType.MERGE)
+	// private List<TelefoneCliente> telefoneCliente = new ArrayList<TelefoneCliente>();
+
+	// @OneToMany //(mappedBy = "cliente", cascade = CascadeType.MERGE)
+	// private List<EnderecoCliente> enderecoCliente = new ArrayList<EnderecoCliente>();
+
+	// @OneToMany //(mappedBy = "cliente", cascade = CascadeType.MERGE)
+	// private List<Compra> compras = new ArrayList<Compra>();
 }

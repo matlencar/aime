@@ -9,10 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,15 +29,15 @@ public class TelefoneTransportadora {
 	private Integer id;
 	
     @NotBlank
-    @Pattern(regexp = "\\s\\d{5}-\\d{4}")
+    // @Pattern(regexp = "\\s\\d{5}-\\d{4}")
 	private String telefone;
 	
     @NotBlank
-    @Pattern(regexp = "\\(\\d{2}\\)")
+    // @Pattern(regexp = "\\(\\d{2}\\)")
 	private String ddd;
 	
     @NotBlank
-    @Pattern(regexp = "\\(\\d{2}\\)")
+    // @Pattern(regexp = "\\(\\d{2}\\)")
 	private String ddi;
 	
 	@Enumerated(EnumType.STRING)

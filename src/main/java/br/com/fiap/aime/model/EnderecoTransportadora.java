@@ -34,15 +34,15 @@ public class EnderecoTransportadora {
     private String cep;
 
     @NotBlank
-    @Size(min = 8, message = "Deve conter o logradouro da transportadora")
+    @Size(max = 200, message = "Deve conter o logradouro da transportadora")
     private String logradouro;
 
     @NotBlank
-    @Size(max = 10, message = "Deve conter o nome do bairro onde reside a transportadora")
+    @Size(max = 200, message = "Deve conter o nome do bairro onde reside a transportadora")
     private String bairro;
 
     @NotBlank
-    @Size(max = 8, message = "Pais de origem")
+    @Size(max = 200, message = "Pais de origem")
     private String pais;
 
     @NotBlank

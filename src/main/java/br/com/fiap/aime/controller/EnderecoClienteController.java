@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.aime.exception.RestNotFoundException;
 import br.com.fiap.aime.model.EnderecoCliente;
 import br.com.fiap.aime.repository.EnderecoClienteRepository;
@@ -22,7 +21,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/EnderecoClientes")
+// @RequestMapping("/api/enderecoClientes")
 public class EnderecoClienteController {
         
     Logger log = LoggerFactory.getLogger(getClass());
@@ -30,27 +29,33 @@ public class EnderecoClienteController {
     @Autowired
     EnderecoClienteRepository repository; // IoD
 
-    @PostMapping
+     @GetMapping("/api/enderecoClientes")
+    public List<EnderecoCliente> index() {
+        return repository.findAll();
+    }
+
+    @PostMapping("/api/enderecoClientes")
     public ResponseEntity<EnderecoCliente> create(@RequestBody @Valid EnderecoCliente enderecoCliente) {
         log.info("cadastrando EnderecoCliente: " + enderecoCliente);
         repository.save(enderecoCliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(enderecoCliente);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/api/enderecoClientes/{id}")
     public ResponseEntity<EnderecoCliente> show(@PathVariable Integer id) {
         log.info("buscando EnderecoCliente com id " + id);
         return ResponseEntity.ok(getEnderecoCliente(id));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/api/enderecoClientes/{id}")
     public ResponseEntity<EnderecoCliente> destroy(@PathVariable Integer id) {
         log.info("apagando EnderecoCliente com id " + id);
-        repository.delete(getEnderecoCliente(id));
+        var endereco =  getEnderecoCliente(id);
+        repository.delete(endereco);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/api/enderecoClientes/{id}")
     public ResponseEntity<EnderecoCliente> update(@PathVariable Integer id, @RequestBody @Valid EnderecoCliente enderecoCliente) {
         log.info("atualizando EnderecoCliente com id " + id);
         getEnderecoCliente(id);

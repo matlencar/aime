@@ -9,8 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,12 +41,10 @@ public class Empresa {
     @Size(min = 3, message = "A descrição deve conter no minimo 3 caracteres")
     private String descricao;
 
-    @NotBlank
-    @Positive
+    @NotNull
     private int numeroVendas;
 
-    @NotBlank
-    @PositiveOrZero
+    @NotNull
     private int numeroAvaliacao;
 
     // RELACIONAMENTOS

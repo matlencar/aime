@@ -1,14 +1,13 @@
 package br.com.fiap.aime.model;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+// import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -38,18 +37,9 @@ public class Transportadora {
     @Size(min = 2, message = "precisa conter no minimo 2 caracteres")
 	private String descricao;
 
-    @NotBlank
+    @NotNull
     @PositiveOrZero
     private int numeroNota;
 
     //RELACIONAMENTOS
-
-    @OneToMany //(mappedBy = "transportadora", cascade = CascadeType.MERGE)
-	private List<TelefoneTransportadora> telefoneTransportadora = new ArrayList<TelefoneTransportadora>();
-	
-	@OneToMany //(mappedBy = "transportadora", cascade = CascadeType.MERGE)
-	private List<EnderecoTransportadora> enderecoTransportadora = new ArrayList<EnderecoTransportadora>();
-	
-	@OneToMany //(mappedBy = "transportadora", cascade = CascadeType.MERGE)
-	private List<Produto> produtos = new ArrayList<Produto>();
 }

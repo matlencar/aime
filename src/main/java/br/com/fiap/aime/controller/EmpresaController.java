@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.aime.exception.RestNotFoundException;
@@ -22,7 +21,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/Empresas")
+// @RequestMapping("/api/Empresas")
 public class EmpresaController {
         
     Logger log = LoggerFactory.getLogger(getClass());
@@ -30,32 +29,33 @@ public class EmpresaController {
     @Autowired
     EmpresaRepository repository; // IoD
 
-    @GetMapping
+    @GetMapping("/api/empresas")
     public List<Empresa> index() {
         return repository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/api/empresas")
     public ResponseEntity<Empresa> create(@RequestBody @Valid Empresa empresa) {
         log.info("cadastrando Empresa: " + empresa);
         repository.save(empresa);
         return ResponseEntity.status(HttpStatus.CREATED).body(empresa);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/api/empresas/{id}")
     public ResponseEntity<Empresa> show(@PathVariable Integer id) {
         log.info("buscando Empresa com id " + id);
         return ResponseEntity.ok(getEmpresa(id));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/api/empresas/{id}")
     public ResponseEntity<Empresa> destroy(@PathVariable Integer id) {
         log.info("apagando Empresa com id " + id);
-        repository.delete(getEmpresa(id));
+        var empresa = getEmpresa(id);
+        repository.delete(empresa);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/api/empresas/{id}")
     public ResponseEntity<Empresa> update(@PathVariable Integer id, @RequestBody @Valid Empresa empresa) {
         log.info("atualizando Empresa com id " + id);
         getEmpresa(id);

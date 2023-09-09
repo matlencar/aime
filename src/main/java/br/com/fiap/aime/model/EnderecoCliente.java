@@ -54,7 +54,7 @@ public class EnderecoCliente {
 	private Status status;
 	
 	@NotBlank
-    @Size(max = 8, message = "Complemento de onde reside")
+    @Size(max = 200, message = "Complemento de onde reside")
 	private String complemento;
 
     //RELACIONAMENTO
