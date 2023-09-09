@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -34,47 +35,47 @@ public class Produto {
     private Integer id;
 
     @NotBlank
-    @Size(min = 3, message = "Precisa conter um nome com no minimo 3 caracteres")
+    @Size(max = 200, message = "Precisa conter um nome com no minimo 3 caracteres")
     private String nome;
 
     @NotBlank
-    @Size(min = 2, message = "precisa conter no minimo 2 caracteres")
+    @Size(max = 200, message = "precisa conter no minimo 2 caracteres")
     private String descricao;
 
-    @NotBlank
+    @NotNull
     @Size(max = 5)
     private int estrelas;
 
-    @NotBlank
+    @NotNull
     @PositiveOrZero
     private int numeroAvaliacoes;
 
-    @NotBlank
+    @NotNull
     @Digits(integer = 10, fraction = 2)
     private int preco;
 
-    @NotBlank
+    @NotNull
     @Digits(integer = 10, fraction = 2)
     private int precoFrete;
 
     // RELACIONAMENTOS
 
-    @ManyToOne // (cascade = CascadeType.MERGE)
-    @JoinColumn // (name = "ID_CATEGORIA", nullable = false)
-    private Categoria categoria;
+    // @ManyToOne // (cascade = CascadeType.MERGE)
+    // @JoinColumn // (name = "ID_CATEGORIA", nullable = false)
+    // private Categoria categoria;
 
-    @ManyToOne // (cascade = CascadeType.MERGE)
-    @JoinColumn // (name = "ID_EMPRESA", nullable = false)
-    private Empresa empresa;
+    // @ManyToOne // (cascade = CascadeType.MERGE)
+    // @JoinColumn // (name = "ID_EMPRESA", nullable = false)
+    // private Empresa empresa;
 
-    @ManyToOne // (cascade = CascadeType.MERGE)
-    @JoinColumn // (name = "ID_TRANSPORTADORA", nullable = false)
-    private Transportadora transportadora;
+    // @ManyToOne // (cascade = CascadeType.MERGE)
+    // @JoinColumn // (name = "ID_TRANSPORTADORA", nullable = false)
+    // private Transportadora transportadora;
 
-    @ManyToOne // (cascade = CascadeType.MERGE)
-    @JoinColumn // (name = "ID_MARCA", nullable = false)
-    private Marca marca;
+    // @ManyToOne // (cascade = CascadeType.MERGE)
+    // @JoinColumn // (name = "ID_MARCA", nullable = false)
+    // private Marca marca;
     
-    @OneToMany // (mappedBy = "produto", cascade = CascadeType.MERGE)
-    private List<Compra> compras = new ArrayList<Compra>();
+    // @OneToMany // (mappedBy = "produto", cascade = CascadeType.MERGE)
+    // private List<Compra> compras = new ArrayList<Compra>();
 }

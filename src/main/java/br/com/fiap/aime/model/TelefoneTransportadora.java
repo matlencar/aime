@@ -33,15 +33,15 @@ public class TelefoneTransportadora {
 	private Integer id;
 	
     @NotBlank
-    @Pattern(regexp = "\\s\\d{5}-\\d{4}")
+    // @Pattern(regexp = "\\s\\d{5}-\\d{4}")
 	private String telefone;
 	
     @NotBlank
-    @Pattern(regexp = "\\(\\d{2}\\)")
+    // @Pattern(regexp = "\\(\\d{2}\\)")
 	private String ddd;
 	
     @NotBlank
-    @Pattern(regexp = "\\(\\d{2}\\)")
+    // @Pattern(regexp = "\\(\\d{2}\\)")
 	private String ddi;
 	
 	@Enumerated(EnumType.STRING)

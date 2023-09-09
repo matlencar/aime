@@ -30,15 +30,14 @@ public class EnderecoEmpresa {
 	private Integer id;
 	
 	@NotBlank
-    @Size(max = 8, message = "Deve conter o cep da empresa")
+    @Size(max = 200, message = "Deve conter o cep da empresa")
 	private String cep;
 	
 	@NotBlank
-    @Size(min = 8, message = "Deve conter o logradouro da empresa")
 	private String logradouro;
 	
 	@NotBlank
-    @Size(max = 10, message = "Deve conter o nome do bairro onde reside a empresa")
+    @Size(max = 200, message = "Deve conter o nome do bairro onde reside a empresa")
 	private String bairro;
 	
 	@NotBlank
@@ -53,7 +52,7 @@ public class EnderecoEmpresa {
 	private Status status;
 	
 	@NotBlank
-    @Size(max = 8, message = "Complemento da empresa")
+    @Size(max = 200, message = "Complemento da empresa")
 	private String complemento;
 
     //RELACIONAMENTOS

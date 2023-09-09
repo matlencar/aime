@@ -43,6 +43,6 @@ public class Marca {
 
     //RELACIONAMENTOS
 
-    @OneToMany //(mappedBy = "marca", cascade = CascadeType.MERGE)
-	private List<Produto> produtos = new ArrayList<Produto>();
+    // @OneToMany //(mappedBy = "marca", cascade = CascadeType.MERGE)
+	// private List<Produto> produtos = new ArrayList<Produto>();
 }

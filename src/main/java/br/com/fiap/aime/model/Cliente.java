@@ -67,14 +67,14 @@ public class Cliente {
     @Size(min = 3, message = "Precisa conter um nome de no minimo 3 caracteres")
 	private String nomeSocial;
 
-    //RELACIONAMENTOS
+    // //RELACIONAMENTOS
 
-    @OneToMany //(mappedBy = "cliente", cascade = CascadeType.MERGE)
-	private List<TelefoneCliente> telefoneCliente = new ArrayList<TelefoneCliente>();
+    // @OneToMany //(mappedBy = "cliente", cascade = CascadeType.MERGE)
+	// private List<TelefoneCliente> telefoneCliente = new ArrayList<TelefoneCliente>();
 
-	@OneToMany //(mappedBy = "cliente", cascade = CascadeType.MERGE)
-	private List<EnderecoCliente> enderecoCliente = new ArrayList<EnderecoCliente>();
+	// @OneToMany //(mappedBy = "cliente", cascade = CascadeType.MERGE)
+	// private List<EnderecoCliente> enderecoCliente = new ArrayList<EnderecoCliente>();
 
-	@OneToMany //(mappedBy = "cliente", cascade = CascadeType.MERGE)
-	private List<Compra> compras = new ArrayList<Compra>();
+	// @OneToMany //(mappedBy = "cliente", cascade = CascadeType.MERGE)
+	// private List<Compra> compras = new ArrayList<Compra>();
 }
