@@ -1,4 +1,4 @@
-# Sprint Enterprise Application Development
+# Sprint Digital Business Enablement 
 
 # ProjetoAssistente GPT
 
