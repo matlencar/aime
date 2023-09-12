@@ -79,19 +79,19 @@ public class DataBaseSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception{
 
-        Cliente cliente1 = new Cliente(1, "Caio", "caio2132@gmail.com", "4446668881", "445556667", "ola123@", "20/09/1998",Status.I , "N/A");
-        Cliente cliente2 = new Cliente(2, "Sheila", "sheila1132@gmail.com", "4446668881", "445556667", "ola123@", "20/09/1998",Status.A , "N/A");
-        Cliente cliente3 = new Cliente(3, "Rubinho", "rubinho1132@gmail.com", "4446668881", "445556667", "ola123@", "20/09/1998",Status.A , "Aninha");
+        Cliente cliente1 = new Cliente(1, "Caio", "caio2132@gmail.com", "4446668881", "445556667", "ola123@", "10/09/1998",Status.I , "N/A");
+        Cliente cliente2 = new Cliente(2, "Sheila", "sheila1132@gmail.com", "4446668881", "445556667", "ola123@", "13/08/1998",Status.A , "N/A");
+        Cliente cliente3 = new Cliente(3, "Rubinho", "rubinho1132@gmail.com", "4446668881", "445556667", "ola123@", "21/11/1998",Status.A , "Aninha");
         clienteRepository.saveAll(List.of(cliente1, cliente2, cliente3));
         
-        EnderecoCliente enderecoCliente1 = new EnderecoCliente(1, "056471", "pa nozes", "osascu", "brasil", "2", Status.A, "em frente a tristeza", cliente1);
-        EnderecoCliente enderecoCliente2 = new EnderecoCliente(2, "056471", "pa nozes", "osascu", "brasil", "2", Status.A, "em frente a tristeza", cliente2);
-        EnderecoCliente enderecoCliente3 = new EnderecoCliente(3, "056471", "pa nozes", "osascu", "brasil", "2", Status.A, "em frente a tristeza", cliente3);
+        EnderecoCliente enderecoCliente1 = new EnderecoCliente(1, "04186100", "Rua das Graças", "SBC", "Brasil", "2", Status.A, "Mercado", cliente1);
+        EnderecoCliente enderecoCliente2 = new EnderecoCliente(2, "04156900", "Rua Gonçalves", "São Paulo", "Brasil", "2", Status.A, "Banco", cliente2);
+        EnderecoCliente enderecoCliente3 = new EnderecoCliente(3, "04185310", "Avenida Prestes Maia", "Santo andre", "Brasil", "2", Status.A, "Sem complemento", cliente3);
         enderecoClienteRepository.saveAll(List.of(enderecoCliente1, enderecoCliente2, enderecoCliente3));
 
-        TelefoneCliente telefoneCliente1 = new TelefoneCliente(1, "7893405723", "011", "+55", Status.A, cliente1);
-        TelefoneCliente telefoneCliente2 = new TelefoneCliente(2, "7893405723", "011", "+55", Status.A, cliente2);
-        TelefoneCliente telefoneCliente3 = new TelefoneCliente(3, "7893405723", "011", "+55", Status.A, cliente3);
+        TelefoneCliente telefoneCliente1 = new TelefoneCliente(1, "989505723", "011", "+55", Status.A, cliente1);
+        TelefoneCliente telefoneCliente2 = new TelefoneCliente(2, "9893605723", "011", "+55", Status.A, cliente2);
+        TelefoneCliente telefoneCliente3 = new TelefoneCliente(3, "9893405711", "011", "+55", Status.A, cliente3);
         telefoneClienteRepository.saveAll(List.of(telefoneCliente1, telefoneCliente2, telefoneCliente3));
 
         Produto produto1 = new Produto(1, "Notebook", "I5 10º geração", 4, 6, 20, 10);
@@ -114,40 +114,35 @@ public class DataBaseSeeder implements CommandLineRunner {
         Empresa empresa3 = new Empresa(3, "Lksad", "Ltda", "any",4, 5, null, null, null);
         empresaRepository.saveAll(List.of(empresa1, empresa2, empresa3));
 
-        EnderecoEmpresa enderEmpresa1 = new EnderecoEmpresa(1, "056471", "pa nozes", "osascu", "brasil", "2", Status.A, "disappointed", empresa1);
-        EnderecoEmpresa enderEmpresa2 = new EnderecoEmpresa(2, "056479", "pa mim", "sao berlondres", "brasil", "2", Status.I, "disappointed", empresa2);
-        EnderecoEmpresa enderEmpresa3 = new EnderecoEmpresa(3, "056473", "pa eu", "osascu", "brasil", "2", Status.A, "disappointed", empresa3);
+        EnderecoEmpresa enderEmpresa1 = new EnderecoEmpresa(1, "04187300", "Rua matarazzo", "Osasco", "Brasil", "3", Status.A, "Não tem", empresa1);
+        EnderecoEmpresa enderEmpresa2 = new EnderecoEmpresa(2, "04186210", "Rua Joao firmino", "Santo andre", "Brasil", "21", Status.I, "Não tem", empresa2);
+        EnderecoEmpresa enderEmpresa3 = new EnderecoEmpresa(3, "04187300", "Rua da patria", "SBC", "Brasil", "10", Status.A, "Não tem", empresa3);
         enderecoEmpresaRepository.saveAll(List.of(enderEmpresa1, enderEmpresa2, enderEmpresa3));
 
-        TelefoneEmpresa telEmpresa1 = new TelefoneEmpresa(1, "970704141", "011", "+55",  Status.A, empresa1);
-        TelefoneEmpresa telEmpresa2 = new TelefoneEmpresa(2, "970704141", "011", "+55",  Status.A, empresa2);
-        TelefoneEmpresa telEmpresa3 = new TelefoneEmpresa(3, "970704141", "011", "+55",  Status.A, empresa3);
+        TelefoneEmpresa telEmpresa1 = new TelefoneEmpresa(1, "970804141", "011", "+55",  Status.A, empresa1);
+        TelefoneEmpresa telEmpresa2 = new TelefoneEmpresa(2, "970304133", "011", "+55",  Status.A, empresa2);
+        TelefoneEmpresa telEmpresa3 = new TelefoneEmpresa(3, "970404125", "011", "+55",  Status.A, empresa3);
         telefoneEmpresaRepository.saveAll(List.of(telEmpresa1, telEmpresa2, telEmpresa3));
 
 
-        Transportadora transportadora1 = new Transportadora(1, "leva rápido", "dedadão", 5);
-        Transportadora transportadora2 = new Transportadora(2, "leva rápido", "dedadão", 5);
-        Transportadora transportadora3 = new Transportadora(3, "leva rápido", "dedadão", 5);
+        Transportadora transportadora1 = new Transportadora(1, "Fast entregas", "A entrega mais rapida", 5);
+        Transportadora transportadora2 = new Transportadora(2, "Legolas", "Entregas a todo vapor", 5);
+        Transportadora transportadora3 = new Transportadora(3, "Flash", "Entregas a todo vapor", 5);
         transportadoraRepository.saveAll(List.of(transportadora1, transportadora2, transportadora3));
         
-        TelefoneTransportadora telefoneTransportadora1 = new TelefoneTransportadora(1, "6789315243", "011", "+55", Status.A, transportadora1);
-        TelefoneTransportadora telefoneTransportadora2 = new TelefoneTransportadora(2, "6789315243", "011", "+55", Status.A, transportadora2);
-        TelefoneTransportadora telefoneTransportadora3 = new TelefoneTransportadora(3, "6789315243", "011", "+55", Status.A, transportadora3);
+        TelefoneTransportadora telefoneTransportadora1 = new TelefoneTransportadora(1, "9189115221", "011", "+55", Status.A, transportadora1);
+        TelefoneTransportadora telefoneTransportadora2 = new TelefoneTransportadora(2, "9289415272", "011", "+55", Status.A, transportadora2);
+        TelefoneTransportadora telefoneTransportadora3 = new TelefoneTransportadora(3, "9389615254", "011", "+55", Status.A, transportadora3);
         telefoneTransportadoraRepository.saveAll(List.of(telefoneTransportadora1, telefoneTransportadora2, telefoneTransportadora3));
         
         EnderecoTransportadora enderecoTransportadora1 = new EnderecoTransportadora(1, "728374", "alou", "aslou", "brasil", "123", Status.A, "fjhse", transportadora1);
         EnderecoTransportadora enderecoTransportadora2 = new EnderecoTransportadora(2, "728374", "alou", "aslou", "brasil", "123", Status.A, "fjhse", transportadora2);
         EnderecoTransportadora enderecoTransportadora3 = new EnderecoTransportadora(3, "728374", "alou", "aslou", "brasil", "123", Status.A, "fjhse", transportadora3);
         enderecoTransportadoraRepository.saveAll(List.of(enderecoTransportadora1, enderecoTransportadora2, enderecoTransportadora3));
-
-        // Produto produto1 = new Produto(1, "Notebook", "I5 10º geração", 4, 6, 20, 10);
-        // Produto produto2 = new Produto(2, "smartphone", "128gb", 5, 2, 1150, 10);
-        // Produto produto3 = new Produto(3, "SSD", "518gb de capacidade", 3, 11, 70, 10);
-        // produtoRepository.saveAll(List.of(produto1, produto2, produto3));
         
-        Marca marca1 = new Marca(1, "Nike", "Melhor nike do mundo", 5);
-        Marca marca2 = new Marca(2, "Aididas", "Melhor nike do mundo", 4);
-        Marca marca3 = new Marca(3, "Punas", "Melhor nike do mundo", 4);
+        Marca marca1 = new Marca(1, "Acer", "Nitro aspire, 518gb ssd", 5);
+        Marca marca2 = new Marca(2, "Apple", "Iphone 11X 128gb", 4);
+        Marca marca3 = new Marca(3, "Lenovo", "Smartphone lenovo 8, 128gb", 4);
         marcaRepository.saveAll(List.of(marca1, marca2, marca3));
 
     }
