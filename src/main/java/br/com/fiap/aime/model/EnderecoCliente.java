@@ -31,11 +31,11 @@ public class EnderecoCliente {
 	private Integer id;
 
 	@NotBlank
-	@Size(max = 8)
+	@Size(max = 12)
 	private String cep;
 
 	@NotBlank
-	@Size(min = 8, message = "Deve conter o logradouro")
+	@Size(min = 100, message = "Deve conter o logradouro")
 	private String logradouro;
 
 	// @NotBlank
@@ -47,7 +47,7 @@ public class EnderecoCliente {
 	private String pais;
 
 	@NotBlank
-	@Size(max = 8, message = "Numero da residencia")
+	@Size(max = 50, message = "Numero da residencia")
 	private String numero;
 
 	@Enumerated(EnumType.STRING)
