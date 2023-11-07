@@ -35,7 +35,7 @@ public class EnderecoCliente {
 	private String cep;
 
 	@NotBlank
-	@Size(min = 100, message = "Deve conter o logradouro")
+	@Size(max = 100, message = "Deve conter o logradouro")
 	private String logradouro;
 
 	// @NotBlank

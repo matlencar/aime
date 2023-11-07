@@ -42,8 +42,8 @@ public class Cliente implements UserDetails {
 	private String nome;
 
     @NotBlank
-    @Email(message="Por favor forneça um endereço de email valido")
-    @Pattern(regexp=".+@.+\\..+", message="Por favor forneça um endereço de email valido")
+    // @Email(message="Por favor forneça um endereço de email valido")
+    // @Pattern(regexp=".+@.+\\..+", message="Por favor forneça um endereço de email valido")
 	private String email;
 	
     @NotBlank
@@ -55,7 +55,7 @@ public class Cliente implements UserDetails {
 	private String rg;
 	
     @NotBlank
-    @Size(min = 6, max = 12, message = "A senha deve conter entre 6 a 12 caracteres")
+    // @Size(min = 6, max = 12, message = "A senha deve conter entre 6 a 12 caracteres")
 	private String senha;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")

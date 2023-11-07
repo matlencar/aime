@@ -26,7 +26,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         // pegar o token header
-        var token= getToken(request);
+        var token = getToken(request);
 
         // se for valido, autenticar
         if(token != null) {
