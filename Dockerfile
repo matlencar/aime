@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine
+FROM openjdk:17
 
 RUN apk update --no-cache
 RUN adduser -h /home/usrapp -s /bin/bash -D usrapp
