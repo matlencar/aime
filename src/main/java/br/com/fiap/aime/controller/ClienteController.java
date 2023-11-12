@@ -33,9 +33,9 @@ public class ClienteController {
     Logger log = LoggerFactory.getLogger(Cliente.class);
 
     @Autowired
-    ClienteRepository repository; 
+    ClienteRepository repository;
 
-    //implementaçõs de Security
+    // implementaçõs de Security
 
     @Autowired
     AuthenticationManager manager;
@@ -47,14 +47,14 @@ public class ClienteController {
     TokenService tokenService;
 
     @PostMapping("/api/clientes/login")
-    public ResponseEntity<Object> login(@RequestBody @Valid Credencial credencial){
+    public ResponseEntity<Object> login(@RequestBody @Valid Credencial credencial) {
         manager.authenticate(credencial.toAuthentication());
 
         var token = tokenService.generateToken(credencial);
         return ResponseEntity.ok(token);
     }
 
-    //end
+    // end
 
     @GetMapping("/api/clientes")
     public List<Cliente> index() {
@@ -64,6 +64,7 @@ public class ClienteController {
     @PostMapping("/api/clientes")
     public ResponseEntity<Cliente> create(@RequestBody @Valid Cliente cliente) {
         log.info("cadastrando novo cliente: " + cliente);
+        cliente.setSenha(encoder.encode(cliente.getSenha()));
         repository.save(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
     }
