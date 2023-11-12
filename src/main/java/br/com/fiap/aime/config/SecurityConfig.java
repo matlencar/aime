@@ -36,42 +36,44 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, CorsConfigurationSource corsConfigurationSource) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, CorsConfigurationSource corsConfigurationSource)
+            throws Exception {
         return http
-            .cors()
-                .configurationSource(corsConfigurationSource) 
-            .and()
-            .authorizeHttpRequests()
+                .cors()
+                .configurationSource(corsConfigurationSource)
+                .and()
+                .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/api/clientes/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/clientes").permitAll()
                 .anyRequest().authenticated()
-            .and()
-            .csrf().disable()
-            .headers().frameOptions().disable()
-            .and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .formLogin().disable()
-            .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
-            .build();
+                .and()
+                .csrf().disable()
+                .headers().frameOptions().disable()
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .formLogin().disable()
+                .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
-    
+
     // @Bean
     // public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    //     return http
-    //             .cors()
-    //             .configurationSource(corsConfigurationSource())
-    //             .and()
-    //             .authorizeHttpRequests()
-    //             .requestMatchers(HttpMethod.POST, "/api/usuarios/login").permitAll()
-    //             .anyRequest().authenticated()
-    //             .and()
-    //             .csrf().disable()
-    //             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-    //             .and()
-    //             .formLogin().disable()
-    //             .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
-    //             .build();
+    // return http
+    // .cors()
+    // .configurationSource(corsConfigurationSource())
+    // .and()
+    // .authorizeHttpRequests()
+    // .requestMatchers(HttpMethod.POST, "/api/usuarios/login").permitAll()
+    // .anyRequest().authenticated()
+    // .and()
+    // .csrf().disable()
+    // .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+    // .and()
+    // .formLogin().disable()
+    // .addFilterBefore(authorizationFilter,
+    // UsernamePasswordAuthenticationFilter.class)
+    // .build();
     // }
 
     @Bean
